@@ -1,0 +1,26 @@
+{
+  "name": "pm-app",
+  "version": "0.1.0",
+  "description": "Project Management App",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "tauri-dev": "tauri dev",
+    "tauri-build": "tauri build"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@tauri-apps/api": "^2.11.1",
+    "@tauri-apps/plugin-opener": "^2.5.4"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^3.0.10",
+    "@sveltejs/vite-plugin-svelte": "^7.3.0",
+    "@tauri-apps/cli": "^2.11.4",
+    "@vitejs/plugin-legacy": "^8.2.3",
+    "svelte": "^5.56.8",
+    "svelte-check": "^4.7.5",
+    "vite": "^8.2.1"
+  }
+}

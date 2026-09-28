@@ -1,0 +1,232 @@
+/* ============================================================
+   Old-School Terminal TUI Theme (White on Black, with Glow)
+   ============================================================ */
+
+:root {
+  --terminal-bg: #000000;
+  --terminal-fg: #ffffff;
+  --terminal-dim: #b3b3b3;
+  --terminal-border: #ffffff;
+  --terminal-highlight-bg: #ffffff;
+  --terminal-highlight-fg: #000000;
+  --terminal-font: "Courier New", "Lucida Console", monospace;
+  --terminal-font-size: 16px;
+  --terminal-line-height: 1.4;
+  --terminal-cursor-color: #ffffff;
+  --terminal-glow-color: #00ffea;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--terminal-bg);
+  color: var(--terminal-fg);
+  font-family: var(--terminal-font);
+  font-size: var(--terminal-font-size);
+  line-height: var(--terminal-line-height);
+  height: 100%;
+}
+
+body {
+  padding: 1rem;
+  letter-spacing: 0.02em;
+}
+
+/* Basic terminal "window" container */
+.terminal {
+  background-color: var(--terminal-bg);
+  color: var(--terminal-fg);
+  border: 2px solid var(--terminal-border);
+  padding: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  box-shadow: 4px 4px 0 var(--terminal-border);
+}
+
+/* Title bar to mimic old TUI top border */
+.terminal-titlebar {
+  border-bottom: 2px solid var(--terminal-border);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Blinking block cursor */
+.cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1em;
+  background-color: var(--terminal-cursor-color);
+  animation: blink 1s steps(1) infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+/* Links styled like terminal menu items */
+a {
+  color: var(--terminal-fg);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--terminal-fg);
+}
+
+a:hover,
+a:focus {
+  background-color: var(--terminal-highlight-bg);
+  color: var(--terminal-highlight-fg);
+  border-bottom: none;
+}
+
+/* Buttons styled like retro TUI selectable options */
+button,
+.btn {
+  background-color: var(--terminal-bg);
+  color: var(--terminal-fg);
+  border: 2px solid var(--terminal-border);
+  font-family: var(--terminal-font);
+  font-size: 1em;
+  padding: 0.4em 1em;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: none;
+}
+
+button:hover,
+.btn:hover,
+button:focus,
+.btn:focus {
+  background-color: var(--terminal-highlight-bg);
+  color: var(--terminal-highlight-fg);
+  outline: none;
+}
+
+button:active,
+.btn:active {
+  transform: translate(1px, 1px);
+}
+
+/* Inputs styled like a command line */
+input[type="text"],
+input[type="password"],
+textarea {
+  background-color: var(--terminal-bg);
+  color: var(--terminal-fg);
+  border: 2px solid var(--terminal-border);
+  font-family: var(--terminal-font);
+  font-size: 1em;
+  padding: 0.4em;
+  width: 100%;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+  outline: none;
+  background-color: #0d0d0d;
+}
+
+/* Prompt-style prefix, e.g. "C:\>" or "$" */
+.prompt::before {
+  content: "> ";
+  color: var(--terminal-fg);
+  font-weight: bold;
+}
+
+/* Tables styled like ASCII grid layouts */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--terminal-font);
+}
+
+th, td {
+  border: 1px solid var(--terminal-border);
+  padding: 0.4em 0.6em;
+  text-align: left;
+}
+
+th {
+  background-color: var(--terminal-fg);
+  color: var(--terminal-bg);
+  text-transform: uppercase;
+}
+
+/* Scrollbar styling (WebKit) to keep it minimal/monochrome */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--terminal-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--terminal-fg);
+}
+
+/* Selection highlighting like classic terminal invert */
+::selection {
+  background-color: var(--terminal-highlight-bg);
+  color: var(--terminal-highlight-fg);
+}
+
+/* Status bar footer, similar to old TUI bottom bar */
+.statusbar {
+  border-top: 2px solid var(--terminal-border);
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85em;
+  text-transform: uppercase;
+}
+
+/* Utility class for muted/secondary text */
+.dim {
+  color: var(--terminal-dim);
+}
+
+/* Utility class for inverted text blocks (like a highlighted menu row) */
+.inverted {
+  background-color: var(--terminal-highlight-bg);
+  color: var(--terminal-highlight-fg);
+  padding: 0 0.2em;
+}
+
+/* Utility class for glowing special/important text */
+.glow {
+  color: var(--terminal-glow-color);
+}
+
+/* Animated glowing pulse for extra emphasis */
+.glow-pulse {
+  color: var(--terminal-glow-color);
+  animation: glow-pulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow-pulse {
+  from {
+    text-shadow:
+      0 0 2px var(--terminal-glow-color),
+      0 0 4px var(--terminal-glow-color);
+  }
+  to {
+    text-shadow:
+      0 0 8px var(--terminal-glow-color),
+      0 0 16px var(--terminal-glow-color),
+      0 0 24px var(--terminal-glow-color);
+  }
+}

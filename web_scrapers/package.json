@@ -1,0 +1,16 @@
+{
+  "name": "web_scrapers",
+  "version": "1.0.0",
+  "description": "Playwright web scrapers to extract data from websites",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Gregory D. Burns",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "playwright": "^1.62.1"
+  }
+}
