@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "pm-app",
-  "version": "0.1.0",
-  "identifier": "com.bws.pm-app",
+  "productName": "Project Manager",
+  "version": "0.0.1",
+  "identifier": "com.bws.pm",
   "build": {
     "beforeDevCommand": "pnpm dev",
     "devUrl": "http://localhost:1420",
@@ -12,15 +12,16 @@
   "app": {
     "windows": [
       {
-        "title": "pm-app",
-        "width": 800,
-        "height": 600,
-        "visible": true
+        "label": "main",
+        "title": "Portfolio Manager",
+        "width": 1200,
+        "height": 800,
+        "center": true,
+        "resizable": true,
+        "visible": false,
+        "transparent": true
       }
-    ],
-    "security": {
-      "csp": null
-    }
+    ]
   },
   "bundle": {
     "active": true,

@@ -3,11 +3,6 @@ use std::sync::Mutex;
 use sysinfo::System;
 use tauri::{Manager, PhysicalPosition, PhysicalSize, Position, Size};
 
-#[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
-}
-
 struct SysInfoState(Mutex<System>);
 
 #[derive(Clone, serde::Serialize)]
@@ -46,7 +41,7 @@ pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
         .manage(SysInfoState(Mutex::new(System::new_all())))
-        .invoke_handler(tauri::generate_handler![greet, get_system_stats])
+        .invoke_handler(tauri::generate_handler![get_system_stats])
         .setup(|app| {
             if let Some(window) = app.get_webview_window("main") {
                 // Get the current monitor the app is initializing on
