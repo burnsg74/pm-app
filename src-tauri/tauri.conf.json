@@ -10,10 +10,11 @@
     "frontendDist": "../dist"
   },
   "app": {
+    "macOSPrivateApi": true,
     "windows": [
       {
         "label": "main",
-        "title": "Portfolio Manager",
+        "title": "Project Manager",
         "width": 1200,
         "height": 800,
         "center": true,
