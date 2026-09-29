@@ -1,4 +1,6 @@
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
+mod db;
+
 use std::sync::Mutex;
 use sysinfo::System;
 use tauri::{Manager, PhysicalPosition, PhysicalSize, Position, Size};
@@ -41,8 +43,19 @@ pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
         .manage(SysInfoState(Mutex::new(System::new_all())))
-        .invoke_handler(tauri::generate_handler![get_system_stats])
+        .invoke_handler(tauri::generate_handler![
+            get_system_stats,
+            db::list_tasks,
+            db::create_task,
+            db::update_task_title,
+            db::set_task_status,
+            db::delete_task
+        ])
         .setup(|app| {
+            let dir = app.path().app_data_dir()?;
+            std::fs::create_dir_all(&dir)?;
+            let conn = db::open_file(&dir.join("pm.db"))?;
+            app.manage(db::DbState(Mutex::new(conn)));
             if let Some(window) = app.get_webview_window("main") {
                 // Get the current monitor the app is initializing on
                 if let Ok(Some(monitor)) = window.current_monitor() {

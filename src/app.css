@@ -32,8 +32,12 @@ html, body {
 }
 
 body {
-  padding: 1rem;
   letter-spacing: 0.02em;
+  overflow: hidden;
+}
+
+#app {
+  height: 100%;
 }
 
 /* Basic terminal "window" container */
